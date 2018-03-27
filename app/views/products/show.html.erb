@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product name:</strong>
+  <%= @product.product_name %>
+</p>
+
+<p>
+  <strong>Sku:</strong>
+  <%= @product.sku %>
+</p>
+
+<p>
+  <strong>Is available:</strong>
+  <%= @product.is_available %>
+</p>
+
+<p>
+  <strong>Taxable class:</strong>
+  <%= @product.taxable_class %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @product.cost %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @product.notes %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
