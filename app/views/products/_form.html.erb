@@ -155,10 +155,18 @@
                       <%= form.file_field :product_image, id: :product_image, class: 'form-control'%>
                     </div>
                   </div>
-
                 </div>
-
               </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <% Category.all.each do |category| %>
+                    <%= check_box_tag "product[category_ids][]", category.id, form.object.categories.include?(category) %>
+                    <%= category.category_name %>
+                  <% end %>
+                </div>
+              </div>
+
 
                 <div class="form-actions m-t-40">
                   <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

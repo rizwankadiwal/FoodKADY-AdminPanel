@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :categories_products
   has_many :categories, through: :categories_products
+  accepts_nested_attributes_for :categories_products, allow_destroy: true;
   validates :product_name, :sku, :price, :is_available,:stock_quantity, :taxable_class, presence: true
   validates :price,:cost, numericality: {greater_than: 0}
   validates :stock_quantity, numericality: {only_integer: true, greater_than_or_equal_to: 0}
