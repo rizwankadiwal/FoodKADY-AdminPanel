@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327070411) do
+ActiveRecord::Schema.define(version: 20180327073321) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20180327070411) do
     t.integer "category_image_file_size"
     t.datetime "category_image_updated_at"
     t.integer "parent_id"
+  end
+
+  create_table "categories_products", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_products_on_category_id"
+    t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
