@@ -2,6 +2,12 @@ class ProductsController < ApplicationController
   layout 'admin_application'
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+
+  def import
+    Product.import(params[:file])
+    redirect_to root_url, notice: 'Products Imported'
+  end
+
   # GET /products
   # GET /products.json
   def index
