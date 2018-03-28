@@ -67,47 +67,44 @@
                   <!--/span-->
                 </div>
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <%= form.label :taxable_class, class:'control-label' %>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= form.label :taxable_class, class:'control-label' %>
+                    <% [ 'Taxable', 'Non-Taxable'].each do |tax| %>
                       <div class="radio-list">
                         <label class="radio-inline p-0">
                           <div class="radio radio-info">
-                            <%= form.radio_button :taxable_class, "1", id: 'radio1'%>
-                            <label for="radio1">Taxable</label>
-                          </div>
-                        </label>
-                        <label class="radio-inline">
-                          <div class="radio radio-info">
-                            <%= form.radio_button :taxable_class, "0", id: 'radio1'%>
-                            <label for="radio2">Non-taxable</label>
+                            <%= radio_button_tag 'taxable_class', tax, :taxable_class, id: 'radio1'%>
+                            <label for='radio2'><%=tax%></label>
                           </div>
                         </label>
                       </div>
-                    </div>
+                    <%end%>
                   </div>
+                </div>
+                <!--/span-->
+              </div>
 
                   <!--/span-->
+
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= form.label :is_available, class:'control-label' %>
-                      <div class="radio-list">
-                        <label class="radio-inline p-0">
-                          <div class="radio radio-info">
-                            <%= form.radio_button :is_available, "1", id: 'radio1'%>
-                            <label for="radio1">Active</label>
-                          </div>
-                        </label>
-                        <label class="radio-inline">
-                          <div class="radio radio-info">
-                            <%= form.radio_button :is_available, "0", id: 'radio1'%>
-                            <label for="radio2">Inactive</label>
-                          </div>
-                        </label>
-                      </div>
+                      <% [ 'Active', 'Inactive'].each do |availability| %>
+                        <div class="radio-list">
+                          <label class="radio-inline p-0">
+                            <div class="radio radio-info">
+                              <%= radio_button_tag 'is_availibility', availability, :is_available, id: 'radio1'%>
+                              <label for='radio2'><%=availability%></label>
+                            </div>
+                          </label>
+                        </div>
+                      <%end%>
                     </div>
                   </div>
+                  <!--/span-->
+                </div>
                   <!--/span-->
                 </div>
 
