@@ -54,7 +54,6 @@
                       </div>
                     </div>
                   </div>
-                  <!--/span-->
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= form.label :cost %>
@@ -64,106 +63,82 @@
                       </div>
                     </div>
                   </div>
-                  <!--/span-->
                 </div>
 
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%= form.label :taxable_class, class:'control-label' %>
-                    <% [ 'Taxable', 'Non-Taxable'].each do |tax| %>
-                      <div class="radio-list">
-                        <label class="radio-inline p-0">
-                          <div class="radio radio-info">
-                            <%= radio_button_tag 'taxable_class', tax, :taxable_class, id: 'radio1'%>
-                            <label for='radio2'><%=tax%></label>
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <%= form.label :taxable_class, class:'control-label' %>
+                        <% [ 'Taxable', 'Non-Taxable'].each do |tax| %>
+                          <div class="radio-list">
+                            <label class="radio-inline p-0">
+                              <div class="radio radio-info">
+                                <%= radio_button_tag 'taxable_class', tax, :taxable_class, id: 'radio1'%>
+                                <label for='radio2'><%=tax%></label>
+                              </div>
+                            </label>
                           </div>
-                        </label>
+                        <%end%>
                       </div>
-                    <%end%>
-                  </div>
-                </div>
-                <!--/span-->
-              </div>
-
-                  <!--/span-->
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <%= form.label :is_available, class:'control-label' %>
-                      <% [ 'Active', 'Inactive'].each do |availability| %>
-                        <div class="radio-list">
-                          <label class="radio-inline p-0">
-                            <div class="radio radio-info">
-                              <%= radio_button_tag 'is_availibility', availability, :is_available, id: 'radio1'%>
-                              <label for='radio2'><%=availability%></label>
-                            </div>
-                          </label>
-                        </div>
-                      <%end%>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <%= form.label :is_available, class:'control-label' %>
+                        <% [ 'Active', 'Inactive'].each do |availability| %>
+                          <div class="radio-list">
+                            <label class="radio-inline p-0">
+                              <div class="radio radio-info">
+                                <%= radio_button_tag 'is_availibility', availability, :is_available, id: 'radio1'%>
+                                <label for='radio2'><%=availability%></label>
+                              </div>
+                            </label>
+                          </div>
+                        <%end%>
+                      </div>
                     </div>
                   </div>
-                  <!--/span-->
-                </div>
-                  <!--/span-->
-                </div>
-
-                <!-- For Category (In Testing)
-                <div class="row">
-                  < Admin::Category.all.each do |category| %>
-                    <div>
-                      <= hidden_field_tag "product[categories_ids][]", nil%>
-                      <= check_box_tag "product[categories_ids][]", category.id %>
-                      <= label_tag category.category_name %>
-                    </div>
-                  < end %>
-                </div> -->
-
 
                 <div class="row">
-                  <div class="col-md-12 ">
-                    <%= form.label :description%>
-                    <div class="form-group">
-                      <%= form.text_area :description, class:'form-control', rows:'4',  id: :product_description %>
+                    <div class="col-md-12 ">
+                      <%= form.label :description%>
+                      <div class="form-group">
+                        <%= form.text_area :description, class:'form-control', rows:'4',  id: :product_description %>
+                      </div>
                     </div>
                   </div>
-                </div>
 
                 <div class="row">
-                  <div class="col-md-12 ">
-                    <%= form.label :notes%>
-                    <div class="form-group">
-                      <%= form.text_area :notes, class:'form-control', rows:'4',  id: :product_notes %>
+                    <div class="col-md-12 ">
+                      <%= form.label :notes%>
+                      <div class="form-group">
+                        <%= form.text_area :notes, class:'form-control', rows:'4',  id: :product_notes %>
+                      </div>
                     </div>
                   </div>
-                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                      <%= form.label :stock_quantity, class:'control-label' %>
+                      <div class="form-group">
+                        <%= form.text_field :stock_quantity, id: :product_stock_quantity, class: 'form-control'%>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <%= form.label :product_image, class: 'control-label' %>
+                      <div class="form-group">
+                        <%= form.file_field :product_image, id: :product_image, class: 'form-control'%>
+                      </div>
+                    </div>
+                  </div>
 
                 <div class="row">
                   <div class="col-md-6">
-                    <%= form.label :stock_quantity, class:'control-label' %>
-                    <div class="form-group">
-                      <%= form.text_field :stock_quantity, id: :product_stock_quantity, class: 'form-control'%>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <%= form.label :product_image, class: 'control-label' %>
-                    <div class="form-group">
-                      <%= form.file_field :product_image, id: :product_image, class: 'form-control'%>
-                    </div>
+                    <% Category.all.each do |category| %>
+                      <%= check_box_tag "product[category_ids][]", category.id, form.object.categories.include?(category) %>
+                      <%= category.category_name %>
+                    <% end %>
                   </div>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <% Category.all.each do |category| %>
-                    <%= check_box_tag "product[category_ids][]", category.id, form.object.categories.include?(category) %>
-                    <%= category.category_name %>
-                  <% end %>
-                </div>
-              </div>
-
 
                 <div class="form-actions m-t-40">
                   <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
@@ -172,6 +147,7 @@
                   <%end%>
                 </div>
 
+              </div>
             <%end%>
             </div>
           </div>
